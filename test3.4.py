@@ -18,5 +18,3 @@ while True :
     elif b == 'x' : 
         break
 print('ทำคำสั่งถัดไป')
-
-#Y

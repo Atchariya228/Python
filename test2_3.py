@@ -14,4 +14,3 @@ print('ชิ้นที่ 3 : ',goods[2])
 print('ชิ้นที่ 4 : ',goods[3])
 print('ชิ้นที่ 5 : ',goods[4])
 
-#Y

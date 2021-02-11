@@ -21,5 +21,3 @@ while x <= student :
     x = x+1
 for x in range(0,6) :
     print(score[x],'*'*total[x])
-
-#Y

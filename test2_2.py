@@ -7,5 +7,3 @@ a = int(input('Input number of Days -->'))
 print(a,'Days --> Hour',a*h,'Hours')
 print(a,'Days --> Mintues',m*a,'Minutes')
 print(a,'Days --> Seconds',s*a,'Seconds')
-
-#Y

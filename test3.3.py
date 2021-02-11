@@ -12,5 +12,3 @@ while(True) :
 print('อาหารสุดโปรดของคุณมีดังนี้',end=' ')
 for x in range(1,i) :
     print(x,'.',food[x-1],end='    ')
-
-#Y
