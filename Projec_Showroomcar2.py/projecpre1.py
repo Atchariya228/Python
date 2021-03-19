@@ -1,3 +1,4 @@
+โปรเจค โปรแกรมโชว์รูมรถมือสอง
 import sqlite3
 import datetime
 from os import system,name
@@ -31,30 +32,31 @@ def clear():
 
 def menu(): #เป็นฟังชันก์เมนู กำหนดตัวแปล menu ขึ้นมา
     global choice
-    print('*====================-เบนซ์วงแสวงคาร์-======================* ')
-    print('********* ข้อมูลรถในโชว์รูม ***********')
-    print('แสดงรายการรถยนต์ทั้งหมดในโชว์รูม  [1]') 
-    print('เพิ่มรายการรถยนต์               [2]')
-    print('ลบรายการรถยนต์                [3]')
-    print('แก้ไขข้อมูลรถยนต์                [4]')
-    print('********* ข้อมูลการซื้อ-ขายรถยนต์ ********')
-    print('แสดงข้อมูลการขายรถ             [5]')
-    print('เพิ่มรายการรถยนต์ที่ขาย           [6]')
-    print('ออกจากระบบ                   [7]')
+    print('🚗'*5,'🚘'*5,'เบนซ์วงแสวงคาร์','🚘'*5,'🚗'*5)
+    print('============ ข้อมูลรถในโชว์รูม ============')
+    print('🟢 แสดงรายการรถยนต์ทั้งหมดในโชว์รูม  [1]') 
+    print('✅ เพิ่มรายการรถยนต์               [2]')
+    print('⛔ ลบรายการรถยนต์                [3]')
+    print('🔧 แก้ไขข้อมูลรถยนต์                [4]')
+    print('========== ข้อมูลการซื้อ-ขายรถยนต์ ==========')
+    print('🟩 แสดงข้อมูลการขายรถ             [5]')
+    print('🖊  เพิ่มรายการรถยนต์ที่ขาย           [6]')
+    print('🔨 แก้ไขข้อมูลรถยนต์                [7]')
+    print('📵 ออกจากระบบ                   [0]')
     choice = int(input('เลือกทำรายการ : '))
 
 def names01(): #1 เป็น def ที่ใช้สำหรับรับค่าที่ต้องการจะเพิ่มข้อมูลลงใน DB
     global Carname,Carbrand,Cartype,Carcolor,condition,Registration,Mileage,price
-    Carname = input('ชื่อรถ\t')
-    Carbrand = input('ยี่ห้อรถ\t')
-    Cartype = input ('ประเภทรถ\t')
-    Carcolor = input('สีรถ\t')
-    condition = input('สภาพ\t')
-    Registration = input('ทะเบียนรถยนต์\t')
-    Mileage = input('เลขไมล์\t')
-    price = input('ราคารถ\t')
+    Carname = input('ชื่อรถ :\t')
+    Carbrand = input('ยี่ห้อรถ :\t')
+    Cartype = input ('ประเภทรถ :\t')
+    Carcolor = input('สีรถ :\t')
+    condition = input('สภาพ :\t')
+    Registration = input('ทะเบียนรถยนต์ :\t')
+    Mileage = input('เลขไมล์ :\t')
+    price = input('ราคารถ :\t')
 
-def insert_showcar (Carname,Carbrand,Cartype,Carcolor,condition,Registration,Mileage,price) : #1
+def insert_showcar (Carname,Carbrand,Cartype,Carcolor,condition,Registration,Mileage,price) : #1 นำข้อมูลลงบน DB
     try :
         conn = sqlite3.connect (r'D:\Atchariya_python\Projec_Showroomcar2.py\projecpre1.db')
         c = conn.cursor()
@@ -69,16 +71,16 @@ def insert_showcar (Carname,Carbrand,Cartype,Carcolor,condition,Registration,Mil
         if conn :
             conn.close ()
 
-def names02():#2
+def names02():#2 รับค่า 
     global datetime,Carname,Customer,price,status,Datetimes
     x = datetime.datetime.now()
     Datetimes = str(x)
-    Carname = input('ชื่อรถ\t')
-    Customer = input('ลูกค้า\t')
-    price = input ('ราคา\t')
-    status = input('สถานะ\t')
+    Carname = input('ชื่อรถ :\t')
+    Customer = input('ลูกค้า :\t')
+    price = input ('ราคา :\t')
+    status = input('สถานะ :\t')
     
-def insert_datapay (Datetimes,Carname,Customer,price,status) : #2
+def insert_datapay (Datetimes,Carname,Customer,price,status) : #2 นำข้อมูลลงบน DB
     try :
         conn = sqlite3.connect (r'D:\Atchariya_python\Projec_Showroomcar2.py\projecpre1.db')
         c = conn.cursor()
@@ -93,14 +95,17 @@ def insert_datapay (Datetimes,Carname,Customer,price,status) : #2
         if conn :
             conn.close ()
 
-def show_showcar():#1
+def show_showcar():#1 showtable showcar
+    print(' '*65,' ****** โชว์รูมรถยนต์ ******')
+    print('-'*161)
     print('{0:<10}{1:<30}{2:<25}{3:<25}{4:<18}{5:<16}{6:<23}{7:<20}{8}'.format('ลำดับ','ชื่อรถยนต์','ยี้ห้อรถยนต์','ประเภทรถยนต์','สีรถยนต์','สภาพรถยนต์','ทะเบียนรถยนต์','เลขไมล์','ราคา'))
+    print('-'*161)
     result = '''SELECT * from showcar '''
     for x in c.execute(result) :
         print('{0:<9}{1:<27}{2:<21}{3:<24}{4:<16}{5:<15}{6:<21}{7:<19}{8}'.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]))
 
 
-def delete():#1
+def delete():#1 ฟังก์ชันลบ
     number = int(input('เลื่อกลำดับรายการที่จะลบ : '))
     conn = sqlite3.connect(r'D:\Atchariya_python\Projec_Showroomcar2.py\projecpre1.db')
     c = conn.cursor()
@@ -109,14 +114,17 @@ def delete():#1
     conn.close()
 
 
-def show_datapay():#2
-    print('{0:<10}{1:<36}{2:<32}{3:<30}{4:<18}{5}'.format('ลำดับ','วัน-เวลาซื้อขาย','ชื่อรถ','ชื่อลูกค้า','ราคา','สถานะ'))
+def show_datapay():#2 showstable datapay
+    print(' '*50,' ****** ข้อมูลการซื้อขาย ******')
+    print('-'*131)
+    print('{0:<10}{1:<36}{2:<32}{3:<34}{4:<18}{5}'.format('ลำดับ','วัน-เวลาซื้อขาย','ชื่อรถ','ชื่อลูกค้า','ราคา','สถานะ'))
+    print('-'*131)
     show1 = '''SELECT * from datapay '''
     for x in c.execute(show1):
         print('{0:<9}{1:<33}{2:<30}{3:<30}{4:<18}{5}'.format(x[0],x[1],x[2],x[3],x[4],x[5]))
 
 
-def Edit():#1
+def Edit():#1 ฟังก์ชันแก้ไข showcars
     minn = int(input('ใส่หมายเลขที่ต้องการแก้ไข : '))
     names01()
     conn = sqlite3.connect (r'D:\Atchariya_python\Projec_Showroomcar2.py\projecpre1.db')
@@ -126,6 +134,15 @@ def Edit():#1
     conn.commit()
     conn.close()
 
+def Edipayt():#2 ฟังก์ชันแก้ไข datapay
+    minn = int(input('ใส่หมายเลขที่ต้องการแก้ไข : '))
+    names02()
+    conn = sqlite3.connect (r'D:\Atchariya_python\Projec_Showroomcar2.py\projecpre1.db')
+    c = conn.cursor()
+    update_data = (Datetimes,Carname,Customer,price,status,minn)
+    c.execute ('''UPDATE datapay SET Datetimes = ? ,Carname = ?,Customer = ?,price =  ?, status = ? WHERE NO = ?''',update_data)
+    conn.commit()
+    conn.close()
 
 
 
@@ -147,6 +164,8 @@ while True:
             names02()
             insert_datapay(Datetimes,Carname,Customer,price,status)
         elif choice == 7:
+            Edipayt()
+        elif choice == 0:
             print('ออกจากโปรแกรม ')
             Exitt = str(input('ต้องการออกจากโปรแกรมหรือไม่ y/n :'))
             if Exitt == 'y' or Exitt == 'Y':
@@ -155,6 +174,6 @@ while True:
             else:
                 print('ใส้ข้อมูลให้ถูกต้อง')
         else:
-            print('กรุณาใส่หมายเลขให้ถูกต้อง01')
+            print('กรุณาใส่หมายเลขให้ถูกต้อง')
     except:
-        print('กรุณาใส่หมายเลขให้ถูกต้อง02')
+        print('กรุณาใส่หมายเลขให้ถูกต้อง')
